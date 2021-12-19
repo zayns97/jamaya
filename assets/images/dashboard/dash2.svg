@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="172" height="184" viewBox="0 0 172 184">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.503" x2="0.61" y2="1.121" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#0fa74b"/>
+      <stop offset="1" stop-color="#3a49f9"/>
+    </linearGradient>
+    <clipPath id="clip-path">
+      <rect id="bg" width="172" height="184" rx="15" transform="translate(226 452)" fill="#ed713c"/>
+    </clipPath>
+  </defs>
+  <g id="dash3" transform="translate(-226 -452)">
+    <rect id="bg-2" data-name="bg" width="172" height="184" rx="15" transform="translate(226 452)" fill="url(#linear-gradient)"/>
+    <g id="Card_2_Mask" data-name="Card 2 Mask">
+      <g id="bg-3" data-name="bg" clip-path="url(#clip-path)">
+        <g id="Ellipse_2" data-name="Ellipse 2" transform="translate(58.745 532)" fill="#292d32" stroke="#292d32" stroke-width="36" opacity="0.1">
+          <ellipse cx="134.041" cy="113" rx="134.041" ry="113" stroke="none"/>
+          <ellipse cx="134.041" cy="113" rx="116.041" ry="95" fill="none"/>
+        </g>
+        <g id="Ellipse_1" data-name="Ellipse 1" transform="translate(309.035 289)" fill="#292d32" stroke="#292d32" stroke-width="36" opacity="0.1">
+          <ellipse cx="134.041" cy="136.5" rx="134.041" ry="136.5" stroke="none"/>
+          <ellipse cx="134.041" cy="136.5" rx="116.041" ry="118.5" fill="none"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

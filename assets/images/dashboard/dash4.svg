@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="370" height="100" viewBox="0 0 370 100">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#4dc885"/>
+      <stop offset="0.302" stop-color="#4dc885" stop-opacity="0.2"/>
+      <stop offset="1" stop-color="#4dc885" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <g id="Frame_973" data-name="Frame 973" transform="translate(-4.136 -16.667)">
+    <rect id="Frame_973-2" data-name="Frame 973" width="369.728" height="100" rx="10" transform="translate(4.272 16.667)" fill="#5ede99"/>
+    <path id="Vector" d="M0,26.4l5.55-3.406C11.1,19.587,22.508,12.774,33.608,9.368S56.117,5.961,67.217,8.232c11.408,2.271,22.508,6.813,33.608,5.677,11.408-1.135,22.508-7.948,33.608-11.355a56.538,56.538,0,0,1,33.608,0c11.408,3.406,22.508,10.219,33.917,9.084,11.1-1.135,22.2-10.219,33.608-10.219,11.1,0,22.2,9.084,33.608,9.084,11.1,0,22.2-9.084,33.609-10.219,11.1-1.135,22.508,5.677,33.608,12.49S358.9,26.4,364.45,29.807L370,33.213V53.652H0Z" transform="translate(4.136 63.015)" fill="url(#linear-gradient)"/>
+  </g>
+</svg>
