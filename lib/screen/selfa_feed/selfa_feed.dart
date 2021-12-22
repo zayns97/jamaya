@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:selfa/utils/colors.dart';
 import 'package:selfa/utils/text_widget.dart';
 import 'package:sizer/sizer.dart';
 
@@ -20,7 +22,7 @@ class _SelfaFeedPageState extends State<SelfaFeedPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       // backgroundColor: color.main,
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         automaticallyImplyLeading: false,
         elevation: 0,
@@ -30,12 +32,72 @@ class _SelfaFeedPageState extends State<SelfaFeedPage> {
               text: 'loans'.tr, fontSize: 20, fontWeight: FontWeight.bold),
         ),
         actions: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              SortTab('sort'.tr, Iconsax.sort),
-              FilterTab('filter'.tr, Iconsax.filter),
-            ],
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 5.w),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                GestureDetector(
+                  onTap: showSortDialog,
+                  child: Container(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: 2.5.w, vertical: 0.8.h),
+                    decoration: BoxDecoration(
+                        color: Get.theme.listTileTheme.tileColor,
+                        borderRadius: BorderRadius.circular(15)),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Iconsax.arrow_swap,
+                          size: 15.sp,
+                          color: Colorsax.blue,
+                        ),
+                        SizedBox(
+                          width: 1.w,
+                        ),
+                        Textsax(
+                            text: 'sort'.tr,
+                            fontSize: 13.2,
+                            color: Get.theme.iconTheme.color),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 2.w,
+                ),
+                GestureDetector(
+                  onTap: showFilterDialog,
+                  child: Container(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: 2.5.w, vertical: 0.8.h),
+                    decoration: BoxDecoration(
+                        color: Get.theme.listTileTheme.tileColor,
+                        borderRadius: BorderRadius.circular(15)),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Iconsax.filter,
+                          size: 15.sp,
+                          color: Colorsax.blue,
+                        ),
+                        SizedBox(
+                          width: 1.w,
+                        ),
+                        Textsax(
+                            text: 'filter'.tr,
+                            fontSize: 13.2,
+                            color: Get.theme.iconTheme.color),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),
@@ -59,6 +121,49 @@ class _SelfaFeedPageState extends State<SelfaFeedPage> {
       ),
     );
   }
+
+  // void showSortDialog() {
+  //   Get.bottomSheet(
+  //     Container(
+  //       decoration: BoxDecoration(
+  //           color: context.theme.listTileTheme.tileColor,
+  //           borderRadius: BorderRadius.only(
+  //               topRight: Radius.circular(25), topLeft: Radius.circular(25))),
+  //       padding: EdgeInsets.symmetric(vertical: 3.h, horizontal: 3.w),
+  //       child: Column(
+  //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //         crossAxisAlignment: CrossAxisAlignment.center,
+  //         mainAxisSize: MainAxisSize.min,
+  //         children: [
+  //           Container()
+  //           Textsax(text: 'loanAmount'.tr, fontSize: 13),
+  //           Divider(
+  //             thickness: 1,
+  //             height: 2.h,
+  //           ),
+  //           Textsax(text: 'shareAmount'.tr, fontSize: 13),
+  //           Divider(
+  //             thickness: 2,
+  //             height: 2.h,
+  //           ),
+  //           Textsax(text: 'sortby'.tr, fontSize: 13),
+  //           Divider(
+  //             thickness: 2,
+  //             height: 2.h,
+  //           ),
+  //           Textsax(text: 'ascending'.tr, fontSize: 13),
+  //           Divider(
+  //             thickness: 1,
+  //             height: 2.h,
+  //           ),
+  //           Textsax(text: 'descending'.tr, fontSize: 13),
+  //         ],
+  //       ),
+  //     ),
+  //     isDismissible: true,
+  //     enableDrag: true,
+  //   );
+  // }
 
   Future<void> refresh() {
     return Future.delayed(const Duration(seconds: 2));

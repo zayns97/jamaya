@@ -38,17 +38,14 @@ class _EditAccountInfoPageState extends State<EditAccountInfoPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Container(
-                          margin: const EdgeInsets.all(15),
-                          padding: EdgeInsets.symmetric(
-                              vertical: 1.h, horizontal: 5.w),
-                          decoration: BoxDecoration(
-                              color: context.theme.listTileTheme.tileColor,
-                              borderRadius: BorderRadius.circular(15)),
-                          child: Textsax(
-                              text: 'edit_info'.tr,
-                              fontSize: 13.5,
-                              textAlign: TextAlign.center)),
+                      Padding(
+                        padding: EdgeInsets.symmetric(vertical: 2.5.h),
+                        child: Textsax(
+                            text: 'edit_info'.tr,
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            textAlign: TextAlign.center),
+                      )
                     ],
                   ),
                   Container(
@@ -70,6 +67,7 @@ class _EditAccountInfoPageState extends State<EditAccountInfoPage> {
                                   ? Container(
                                       child: Icon(
                                       Iconsax.camera,
+                                      color: Colorsax.blue,
                                       size: 25.sp,
                                     ))
                                   : ClipRRect(
@@ -184,6 +182,7 @@ class _EditAccountInfoPageState extends State<EditAccountInfoPage> {
     }
   }
 
+  //xx
   void _pickImageCamera() async {
     var cameraStatus = await Permission.camera.status;
     !cameraStatus.isGranted ? await Permission.camera.request() : null;
@@ -195,13 +194,14 @@ class _EditAccountInfoPageState extends State<EditAccountInfoPage> {
       try {
         _cropImage(pickedFile!.path);
       } catch (e) {
-        Get.snackbar('', "profile_picture_warning2".tr);
+        debugPrint('profile_picture_warning2'.tr);
       }
-    } else if (cameraStatus.isDenied) {
+    } else {
       Get.snackbar('', "profile_picture_warning1".tr);
     }
   }
 
+  //xx
   void _pickImageGallery() async {
     var galleryStatus = await Permission.storage.status;
     // ignore: unnecessary_statements
@@ -214,55 +214,69 @@ class _EditAccountInfoPageState extends State<EditAccountInfoPage> {
       try {
         _cropImage(pickedFile!.path);
       } catch (e) {
-        Get.snackbar('', "profile_picture_warning2".tr);
+        debugPrint('profile_picture_warning2'.tr);
       }
-    } else if (galleryStatus.isDenied) {
+    } else {
       Get.snackbar('', "profile_picture_warning".tr);
     }
   }
 
+  //xx
   void showImageDialog() {
-    showDialog(
+    showModalBottomSheet(
+        backgroundColor: Colors.transparent,
         context: context,
         builder: (context) {
-          return AlertDialog(
-            title: Textsax(text: 'pick_img'.tr, fontSize: 13),
-            content: Column(
+          return Container(
+            decoration: BoxDecoration(
+                color: Get.theme.listTileTheme.tileColor,
+                borderRadius: const BorderRadius.only(
+                    topRight: Radius.circular(25),
+                    topLeft: Radius.circular(25))),
+            padding: EdgeInsets.symmetric(vertical: 3.h, horizontal: 3.w),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                InkWell(
-                  onTap: _pickImageCamera,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.camera_alt_rounded,
-                        ),
-                        Textsax(
-                            text: 'camera'.tr,
-                            fontSize: 13,
-                            fontWeight: FontWeight.bold),
-                      ],
+                Textsax(text: 'pick_img'.tr, fontSize: 13),
+                SizedBox(height: 3.h),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    GestureDetector(
+                      onTap: _pickImageCamera,
+                      child: Column(
+                        children: [
+                          Icon(
+                            Iconsax.camera,
+                            color: Colorsax.blue,
+                            size: 27.sp,
+                          ),
+                          SizedBox(
+                            height: 1.5.h,
+                          ),
+                          Textsax(text: 'camera'.tr, fontSize: 12)
+                        ],
+                      ),
                     ),
-                  ),
-                ),
-                InkWell(
-                  onTap: _pickImageGallery,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.image_rounded,
-                        ),
-                        Textsax(
-                            text: 'gallery'.tr,
-                            fontSize: 13,
-                            fontWeight: FontWeight.bold),
-                      ],
+                    GestureDetector(
+                      onTap: _pickImageGallery,
+                      child: Column(
+                        children: [
+                          Icon(
+                            Iconsax.gallery,
+                            color: Colorsax.blue,
+                            size: 27.sp,
+                          ),
+                          SizedBox(
+                            height: 1.5.h,
+                          ),
+                          Textsax(text: 'gallery'.tr, fontSize: 12)
+                        ],
+                      ),
                     ),
-                  ),
+                  ],
                 ),
               ],
             ),

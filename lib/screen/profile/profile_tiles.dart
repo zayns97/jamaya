@@ -8,10 +8,10 @@ import 'package:selfa/utils/colors.dart';
 import 'package:selfa/utils/text_widget.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../utils/tiles.dart';
 import 'component/edit_account/edit_account.dart';
 import 'component/language_theme/language_selector.dart';
 import 'component/my_selfa/my_selfa.dart';
-import 'component/tiles.dart';
 
 class ProfileTilesPage extends StatefulWidget {
   const ProfileTilesPage({Key? key}) : super(key: key);
@@ -34,18 +34,14 @@ class _ProfileTilesPageState extends State<ProfileTilesPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                    width: 25.w,
-                    margin: const EdgeInsets.all(15),
-                    padding:
-                        EdgeInsets.symmetric(vertical: 1.h, horizontal: 1.w),
-                    decoration: BoxDecoration(
-                        color: context.theme.listTileTheme.tileColor,
-                        borderRadius: BorderRadius.circular(15)),
-                    child: Textsax(
-                        text: 'my_account'.tr,
-                        fontSize: 13.5,
-                        textAlign: TextAlign.center))
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: 2.5.h),
+                  child: Textsax(
+                      text: 'my_account'.tr,
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                      textAlign: TextAlign.center),
+                )
               ],
             ),
             Expanded(
@@ -73,7 +69,7 @@ class _ProfileTilesPageState extends State<ProfileTilesPage> {
                           ),
                         ),
                         trailing: Icon(
-                          Icons.arrow_back_ios_rounded,
+                          Icons.arrow_forward_ios_rounded,
                           color: Colorsax.blue,
                         ),
                         navigateTo: const EditAccountPage()),
@@ -121,7 +117,7 @@ class _ProfileTilesPageState extends State<ProfileTilesPage> {
                             children: [
                               SvgPicture.asset('assets/face.svg'),
                               Textsax(
-                                  text: 'Selfa - سلفة',
+                                  text: 'Jamaya - جمعية',
                                   fontSize: 12,
                                   color: Colorsax.white)
                             ],
@@ -143,7 +139,7 @@ class _ProfileTilesPageState extends State<ProfileTilesPage> {
                             children: [
                               SvgPicture.asset('assets/insta.svg'),
                               Textsax(
-                                  text: '@selfa_iq',
+                                  text: '@jamaya_iq',
                                   fontSize: 12,
                                   textDirection: TextDirection.ltr,
                                   color: Colorsax.white),
@@ -166,7 +162,7 @@ class _ProfileTilesPageState extends State<ProfileTilesPage> {
                       leading: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Icon(
-                          Iconsax.warning_2,
+                          Iconsax.logout,
                           color: Colorsax.pink,
                           size: 27,
                         ),

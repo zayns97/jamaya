@@ -28,7 +28,9 @@ class _RestPassPageState extends State<RestPassPage> {
         leading: Container(
           padding: EdgeInsets.only(right: 4.w),
           child: Image.asset(
-            'assets/images/logo.png',
+            Get.isDarkMode
+                ? 'assets/images/logo_dark.png'
+                : 'assets/images/logo_light.png',
             fit: BoxFit.fitWidth,
             width: 22.w,
           ),

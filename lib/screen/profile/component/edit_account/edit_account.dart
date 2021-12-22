@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:selfa/utils/colors.dart';
+import 'package:selfa/utils/text_widget.dart';
 import 'package:sizer/sizer.dart';
 
-import '../tiles.dart';
+import '../../../../utils/tiles.dart';
 import 'edit_account_info.dart';
 import 'edit_password.dart';
 
@@ -23,13 +25,22 @@ class _EditAccountPageState extends State<EditAccountPage> {
         child: Stack(
           children: [
             Padding(
-              padding: EdgeInsets.only(
-                right: 5.w,
-                left: 5.w,
-                top: 15.w,
-              ),
+              padding: EdgeInsets.symmetric(horizontal: 5.w),
               child: Column(
                 children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.symmetric(vertical: 2.5.h),
+                        child: Textsax(
+                            text: 'account_settings'.tr,
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            textAlign: TextAlign.center),
+                      )
+                    ],
+                  ),
                   SizedBox(
                     height: 5.h,
                   ),
@@ -37,9 +48,19 @@ class _EditAccountPageState extends State<EditAccountPage> {
                       context: context,
                       title: 'edit_account'.tr,
                       subtitle: 'edit_infos'.tr,
-                      leading: Icon(Iconsax.user_edit),
+                      leading: Container(
+                        child: Icon(
+                          Iconsax.user_edit,
+                          color: Colorsax.blue,
+                        ),
+                        width: 10.w,
+                        height: 10.w,
+                        decoration: BoxDecoration(
+                            color: Colorsax.lightBlue, shape: BoxShape.circle),
+                      ),
                       trailing: Icon(
                         Icons.arrow_forward_ios_rounded,
+                        color: Colorsax.blue,
                       ),
                       navigateTo: const EditAccountInfoPage()),
                   SizedBox(
@@ -49,9 +70,19 @@ class _EditAccountPageState extends State<EditAccountPage> {
                       context: context,
                       title: 'edit_password'.tr,
                       subtitle: 'change_password'.tr,
-                      leading: Icon(Iconsax.key),
+                      leading: Container(
+                        child: Icon(
+                          Iconsax.key,
+                          color: Colorsax.blue,
+                        ),
+                        width: 10.w,
+                        height: 10.w,
+                        decoration: BoxDecoration(
+                            color: Colorsax.lightBlue, shape: BoxShape.circle),
+                      ),
                       trailing: Icon(
                         Icons.arrow_forward_ios_rounded,
+                        color: Colorsax.blue,
                       ),
                       navigateTo: const EditPaswordPage()),
                 ],

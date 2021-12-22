@@ -7,6 +7,7 @@ Widget Textsax({
   FontWeight fontWeight = FontWeight.w500,
   TextDirection? textDirection,
   double height = 1,
+  double? letterSpacing,
   int maxChars = 1000,
   required String text,
   required double fontSize,
@@ -16,6 +17,7 @@ Widget Textsax({
       textAlign: textAlign,
       textDirection: textDirection,
       style: GoogleFonts.cairo(
+        letterSpacing: letterSpacing,
         fontSize: fontSize.sp,
         height: height,
         color: color,

@@ -31,8 +31,10 @@ class _PhoneVerificationState extends State<PhoneVerification> {
         title: Padding(
           padding: EdgeInsets.only(top: 1.h, right: 1.h),
           child: Image.asset(
-            'assets/images/logo.png',
-            width: 18.w,
+            Get.isDarkMode
+                ? 'assets/images/logo_dark.png'
+                : 'assets/images/logo_light.png',
+            width: 22.w,
           ),
         ),
       ),
@@ -105,7 +107,7 @@ class _PhoneVerificationState extends State<PhoneVerification> {
                 color: Colors.transparent,
                 timeOutInSeconds: 60,
                 onPressed: () {
-                  Get.snackbar('انتظر', 'شوية');
+                  Get.snackbar('verif_code'.tr, 'تم ارسال الرمز برسالة SMS');
                 },
                 buttonType: ButtonType.TextButton,
                 disabledTextStyle: GoogleFonts.cairo(fontSize: 20.0),

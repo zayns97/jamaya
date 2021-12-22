@@ -34,6 +34,7 @@ class _UserListCardState extends State<UserListCard> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Textsax(text: widget.user.user_name, fontSize: 15),
+                SizedBox(height: 1.h),
                 Row(
                   children: [
                     Textsax(

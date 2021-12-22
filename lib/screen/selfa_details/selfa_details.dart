@@ -1,8 +1,10 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:pretty_qr_code/pretty_qr_code.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 import 'package:selfa/screen/selfa_details/model/user_model.dart';
 import 'package:selfa/screen/selfa_feed/model/self_model.dart';
 import 'package:selfa/utils/colors.dart';
@@ -19,11 +21,20 @@ class SelfaDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        toolbarHeight: 0,
+        elevation: 0,
+        systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarIconBrightness: Brightness.light,
+        ),
+      ),
       body: Stack(
         children: [
           Positioned(
             width: 100.w,
-            height: 29.h,
+            height: 30.h,
             child: Container(
               decoration: BoxDecoration(
                   color: Get.theme.canvasColor,
@@ -91,16 +102,17 @@ class SelfaDetails extends StatelessWidget {
                       height: 35.w,
                       padding: EdgeInsets.symmetric(vertical: 0.7.h),
                       decoration: BoxDecoration(
-                          color: Colorsax.white,
+                          color: Colorsax.blueGrey,
                           borderRadius: BorderRadius.circular(15)),
-                      child: CachedNetworkImage(
-                        imageUrl: selfa.selfa_qr_code,
-                        placeholder: (context, url) => const SizedBox(
-                            width: 25,
-                            height: 25,
-                            child: CircularProgressIndicator()),
-                        errorWidget: (context, url, error) =>
-                            const Icon(Iconsax.warning_2),
+                      child: Center(
+                        child: PrettyQr(
+                          elementColor: Colorsax.darkGrey,
+                          image: const AssetImage('assets/images/icon_50.png'),
+                          data: selfa.selfa_qr_code,
+                          size: 30.w,
+                          errorCorrectLevel: QrErrorCorrectLevel.M,
+                          roundEdges: true,
+                        ),
                       ),
                     ),
                   ),
@@ -109,7 +121,7 @@ class SelfaDetails extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: 29.h,
+            top: 30.h,
             left: 5.w,
             width: 90.w,
             height: 70.h,
@@ -241,13 +253,13 @@ class SelfaDetails extends StatelessWidget {
                 ),
                 Container(
                   width: 90.w,
-                  height: 25.h,
-                  padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 2.h),
+                  padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 1.h),
                   decoration: BoxDecoration(
                     color: Get.theme.listTileTheme.tileColor,
                     borderRadius: BorderRadius.circular(15),
                   ),
                   child: ListView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
                     scrollDirection: Axis.vertical,
                     shrinkWrap: true,
                     itemBuilder: (_context, index) {

@@ -26,10 +26,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
     Navigator.pushReplacement(
         context,
         PageTransition(
-          type: PageTransitionType.leftToRightJoined,
-          child: const LoginPage(),
-          childCurrent: widget,
-        ));
+            type: PageTransitionType.fade, child: const LoginPage()));
   }
 
   Widget _buildImage(String assetName, [double width = 330]) {
@@ -52,14 +49,17 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
     );
 
     return IntroductionScreen(
-      globalBackgroundColor: Get.theme.scaffoldBackgroundColor,
       key: introKey,
       globalHeader: Align(
         alignment: Alignment.topRight,
         child: SafeArea(
           child: Padding(
             padding: EdgeInsets.only(top: 20.sp, right: 20.sp),
-            child: Image.asset('assets/images/logo.png', width: 18.w),
+            child: Image.asset(
+                Get.isDarkMode
+                    ? 'assets/images/logo_dark.png'
+                    : 'assets/images/logo_light.png',
+                width: 18.w),
           ),
         ),
       ),
@@ -88,48 +88,47 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
       onDone: () => _onIntroEnd(context),
       onSkip: () => _onIntroEnd(context),
       // You can override onSkip callback
-      showSkipButton: true,
+      showSkipButton: false,
       skipFlex: 0,
-      nextFlex: 0,
+      nextFlex: 30,
+      dotsFlex: 70,
 
-      skip: Container(
-          width: 20.w,
-          height: 5.2.h,
-          decoration: BoxDecoration(
-              color: Colorsax.lightGreen,
-              borderRadius: BorderRadius.circular(15)),
-          child: Center(
-            child: Textsax(
-                text: 'skip'.tr,
-                textAlign: TextAlign.center,
-                fontSize: 11.sp,
-                color: Colorsax.black),
-          )),
+      // skip: Container(
+      //     width: 20.w,
+      //     height: 5.2.h,
+      //     decoration: BoxDecoration(
+      //         color: Colorsax.lightGreen,
+      //         borderRadius: BorderRadius.circular(15)),
+      //     child: Center(
+      //       child: Textsax(
+      //           text: 'skip'.tr,
+      //           textAlign: TextAlign.center,
+      //           fontSize: 11.sp,
+      //           color: Colorsax.black),
+      //     )),
       next: Container(
-          width: 20.w,
+          width: 12.w,
           height: 5.2.h,
-          decoration: BoxDecoration(
-              color: Colorsax.blue, borderRadius: BorderRadius.circular(15)),
-          child: Center(
-            child: Textsax(
-                text: 'next'.tr,
-                textAlign: TextAlign.center,
-                fontSize: 11.sp,
-                color: Colors.white),
+          decoration:
+              BoxDecoration(shape: BoxShape.circle, color: Colorsax.lightBlue),
+          child: Icon(
+            Icons.arrow_forward_ios_rounded,
+            color: Colorsax.blue,
           )),
       done: Container(
-          width: 20.w,
-          height: 5.2.h,
-          decoration: BoxDecoration(
-              color: Colorsax.blue, borderRadius: BorderRadius.circular(15)),
-          child: Center(
-            child: Textsax(
-                text: 'start'.tr,
-                textAlign: TextAlign.center,
-                maxChars: 6,
-                fontSize: 11.sp,
-                color: Colors.white),
-          )),
+        width: 20.w,
+        height: 5.2.h,
+        decoration: BoxDecoration(
+            color: Colorsax.lightBlue, borderRadius: BorderRadius.circular(25)),
+        child: Textsax(
+            height: 0.23.h,
+            text: 'start'.tr,
+            textAlign: TextAlign.center,
+            fontWeight: FontWeight.bold,
+            maxChars: 6,
+            fontSize: 11.sp,
+            color: Colorsax.blue),
+      ),
       curve: Curves.fastLinearToSlowEaseIn,
       controlsMargin: EdgeInsets.all(3.h),
       controlsPadding: kIsWeb

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:selfa/utils/colors.dart';
 import 'package:selfa/utils/text_widget.dart';
@@ -31,8 +32,30 @@ class _QRViewerState extends State<QRViewer> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
-        alignment: Alignment.center,
-        children: [buildQrView(context), Positioned(child: buidResult())],
+        children: [
+          buildQrView(context),
+          Positioned(bottom: 10.h, right: 50.w, child: buidResult()),
+          Positioned(
+              top: 3.h,
+              child: GestureDetector(
+                onTap: () {
+                  Get.back();
+                },
+                child: Container(
+                  margin:
+                      EdgeInsets.symmetric(vertical: 1.5.h, horizontal: 2.5.w),
+                  width: 10.w,
+                  height: 10.w,
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Get.theme.listTileTheme.tileColor),
+                  child: Icon(
+                    Icons.arrow_back_ios_rounded,
+                    size: 15.sp,
+                  ),
+                ),
+              )),
+        ],
       ),
     );
   }

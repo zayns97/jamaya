@@ -40,12 +40,100 @@ class _LanguageSelectState extends State<LanguageSelect> {
                           padding: EdgeInsets.symmetric(
                               vertical: 1.h, horizontal: 1.w),
                           decoration: BoxDecoration(
-                              color: context.theme.listTileTheme.tileColor,
-                              borderRadius: BorderRadius.circular(15)),
+                              color: context.theme.scaffoldBackgroundColor),
                           child: Textsax(
                               text: 'setting'.tr,
-                              fontSize: 13.5,
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
                               textAlign: TextAlign.center)),
+                    ],
+                  ),
+                  SizedBox(height: 2.h),
+                  Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: Textsax(text: 'theme'.tr, fontSize: 11)),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        width: 60.w,
+                        margin: EdgeInsets.symmetric(vertical: 0.8.h),
+                        decoration: BoxDecoration(
+                            color: context.theme.listTileTheme.tileColor,
+                            borderRadius: BorderRadius.circular(15)),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                Get.changeThemeMode(ThemeMode.dark);
+                                Get.changeTheme(ColorController.dark);
+                                box.write('theme', 'dark');
+                              },
+                              child: Container(
+                                width: 30.w,
+                                height: 8.h,
+                                decoration: BoxDecoration(
+                                    color: box.read('theme') == 'dark'
+                                        ? Colorsax.blue
+                                        : Colors.transparent,
+                                    borderRadius: BorderRadius.circular(15)),
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Icon(
+                                      Iconsax.moon,
+                                      color: Colorsax.lightBlue,
+                                      size: 27,
+                                    ),
+                                    Textsax(
+                                      text: 'dark_mode'.tr,
+                                      fontSize: 11,
+                                      color: box.read('theme') == 'dark'
+                                          ? Colorsax.white
+                                          : Colorsax.darkGrey,
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                Get.changeThemeMode(ThemeMode.light);
+                                Get.changeTheme(ColorController.light);
+                                box.write('theme', 'light');
+                              },
+                              child: Container(
+                                width: 30.w,
+                                height: 8.h,
+                                decoration: BoxDecoration(
+                                    color: box.read('theme') == 'light'
+                                        ? Colorsax.blue
+                                        : Colors.transparent,
+                                    borderRadius: BorderRadius.circular(15)),
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Icon(
+                                      Iconsax.sun_1,
+                                      color: Colorsax.lightBlue,
+                                      size: 27,
+                                    ),
+                                    Textsax(
+                                      text: 'light_mode'.tr,
+                                      fontSize: 11,
+                                      color: Colorsax.white,
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                   SizedBox(height: 2.h),
@@ -90,44 +178,6 @@ class _LanguageSelectState extends State<LanguageSelect> {
                     onTap: () {
                       LocalizationService().changeLocale('English');
                     },
-                  ),
-                  SizedBox(height: 2.h),
-                  Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: Textsax(text: 'setting'.tr, fontSize: 11)),
-                  ListTile(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15)),
-                    title: Textsax(text: 'dark_mode'.tr, fontSize: 13.5),
-                    leading: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Icon(
-                        Iconsax.moon,
-                        color: Colorsax.lightBlue,
-                        size: 27,
-                      ),
-                    ),
-                    trailing: CupertinoSwitch(
-                      value: value,
-                      activeColor: Colorsax.lightBlue,
-                      trackColor: Colorsax.lightBlue,
-                      thumbColor:
-                          Get.isDarkMode ? Colorsax.black : Colorsax.white,
-                      onChanged: (value) {
-                        if (Get.isDarkMode) {
-                          Get.changeThemeMode(ThemeMode.light);
-                          Get.changeTheme(ColorController.light);
-                          box.write('theme', 'light');
-                          // print('set ${box.read('theme')}');
-                        } else if (!Get.isDarkMode) {
-                          Get.changeThemeMode(ThemeMode.dark);
-                          Get.changeTheme(ColorController.dark);
-                          box.write('theme', 'dark');
-                          // print('set ${box.read('theme')}');
-                        }
-                      },
-                    ),
-                    contentPadding: const EdgeInsets.all(5),
                   ),
                 ],
               ),

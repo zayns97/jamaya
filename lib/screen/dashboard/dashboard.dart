@@ -26,8 +26,10 @@ class _DashBoardPageState extends State<DashBoardPage> {
         title: Padding(
           padding: const EdgeInsets.only(top: 10, right: 10),
           child: Image.asset(
-            'assets/images/logo.png',
-            width: 16.w,
+            Get.isDarkMode
+                ? 'assets/images/logo_dark.png'
+                : 'assets/images/logo_light.png',
+            width: 18.w,
           ),
         ),
         actions: [

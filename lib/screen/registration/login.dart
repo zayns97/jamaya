@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:selfa/utils/colors.dart';
@@ -25,7 +26,7 @@ class _LoginPageState extends State<LoginPage> {
   late final TextEditingController _passTextController =
       TextEditingController(text: '');
   // final bool _obscureText = true;
-
+  final box = GetStorage();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +35,9 @@ class _LoginPageState extends State<LoginPage> {
         leading: Container(
           padding: EdgeInsets.only(right: 4.w),
           child: Image.asset(
-            'assets/images/logo.png',
+            Get.isDarkMode
+                ? 'assets/images/logo_dark.png'
+                : 'assets/images/logo_light.png',
             fit: BoxFit.fitWidth,
             width: 22.w,
           ),
@@ -73,10 +76,8 @@ class _LoginPageState extends State<LoginPage> {
                       Navigator.push(
                           context,
                           PageTransition(
-                            type: PageTransitionType.leftToRightJoined,
-                            child: const RegisterPage(),
-                            childCurrent: widget,
-                          ));
+                              type: PageTransitionType.fade,
+                              child: const RegisterPage()));
                     },
                     child: Textsax(
                         text: 'create_account'.tr,

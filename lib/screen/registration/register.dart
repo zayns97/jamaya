@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:page_transition/page_transition.dart';
@@ -36,7 +37,9 @@ class _RegisterPageState extends State<RegisterPage> {
         leading: Container(
           padding: EdgeInsets.only(right: 4.w),
           child: Image.asset(
-            'assets/images/logo.png',
+            Get.isDarkMode
+                ? 'assets/images/logo_dark.png'
+                : 'assets/images/logo_light.png',
             fit: BoxFit.fitWidth,
             width: 22.w,
           ),
@@ -75,10 +78,8 @@ class _RegisterPageState extends State<RegisterPage> {
                       Navigator.push(
                           context,
                           PageTransition(
-                            type: PageTransitionType.leftToRightJoined,
-                            child: const LoginPage(),
-                            childCurrent: widget,
-                          ));
+                              type: PageTransitionType.fade,
+                              child: const LoginPage()));
                     },
                     child: Textsax(
                         text: 'login_now'.tr,

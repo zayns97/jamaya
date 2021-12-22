@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_utils/src/extensions/context_extensions.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:selfa/utils/text_widget.dart';
 import 'package:sizer/sizer.dart';
@@ -20,18 +19,14 @@ class NotificationPage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                    width: 28.w,
-                    margin: const EdgeInsets.all(15),
-                    padding:
-                        EdgeInsets.symmetric(vertical: 1.h, horizontal: 1.w),
-                    decoration: BoxDecoration(
-                        color: context.theme.listTileTheme.tileColor,
-                        borderRadius: BorderRadius.circular(15)),
-                    child: Textsax(
-                        text: 'notification'.tr,
-                        fontSize: 13.5,
-                        textAlign: TextAlign.center))
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: 2.5.h),
+                  child: Textsax(
+                      text: 'notification'.tr,
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                      textAlign: TextAlign.center),
+                )
               ],
             ),
             Expanded(

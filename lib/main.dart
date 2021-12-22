@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:sizer/sizer.dart';
 
-import 'screen/onboarding/onboarding.dart';
+import 'screen/setup_wizard/setup_wizard.dart';
 import 'utils/bind.dart';
 import 'utils/language/language.dart';
 import 'utils/theme/theme_controller.dart';
@@ -49,9 +49,7 @@ class MyApp extends StatelessWidget {
           darkTheme: ColorController.dark,
           themeMode: ThemeMode.system,
           initialBinding: Bind(),
-          home: const OnBoardingPage(
-            initial_page: 0,
-          ));
+          home: SetupWizard());
     });
   }
 }

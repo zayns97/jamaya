@@ -35,17 +35,14 @@ class _EditPaswordPageState extends State<EditPaswordPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Container(
-                          margin: const EdgeInsets.all(15),
-                          padding: EdgeInsets.symmetric(
-                              vertical: 1.h, horizontal: 2.w),
-                          decoration: BoxDecoration(
-                              color: context.theme.listTileTheme.tileColor,
-                              borderRadius: BorderRadius.circular(15)),
-                          child: Textsax(
-                              text: 'edit_password'.tr,
-                              fontSize: 13.5,
-                              textAlign: TextAlign.center)),
+                      Padding(
+                        padding: EdgeInsets.symmetric(vertical: 2.5.h),
+                        child: Textsax(
+                            text: 'edit_password'.tr,
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            textAlign: TextAlign.center),
+                      )
                     ],
                   ),
                   Container(
@@ -91,8 +88,7 @@ class _EditPaswordPageState extends State<EditPaswordPage> {
                           onPressed: () {
                             Get.back();
                           },
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 5.w, vertical: 2.5.h),
+                          padding: EdgeInsets.symmetric(vertical: 2.6.h),
                           elevation: 0,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15),

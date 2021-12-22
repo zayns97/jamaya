@@ -11,8 +11,15 @@ Widget Tilesax({
   required Widget navigateTo,
 }) {
   return ListTile(
-    title: Textsax(text: title, fontSize: 16, fontWeight: FontWeight.bold),
-    subtitle: Textsax(text: subtitle, fontSize: 13.5),
+    title: Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5),
+      child: Textsax(
+          text: title,
+          fontSize: 13.5,
+          fontWeight: FontWeight.w700,
+          height: 1.3),
+    ),
+    subtitle: Textsax(text: subtitle, fontSize: 11),
     leading: leading,
     trailing: trailing,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
@@ -20,7 +27,7 @@ Widget Tilesax({
       Navigator.push(
           context,
           PageTransition(
-            type: PageTransitionType.leftToRight,
+            type: PageTransitionType.fade,
             child: navigateTo,
           ));
     },
@@ -39,7 +46,7 @@ Widget Tilesm({
       Navigator.push(
           context,
           PageTransition(
-            type: PageTransitionType.leftToRight,
+            type: PageTransitionType.fade,
             child: navigateTo,
           ));
     },

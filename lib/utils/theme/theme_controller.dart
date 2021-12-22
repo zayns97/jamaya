@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:selfa/utils/language/language.dart';
@@ -10,14 +11,14 @@ class ColorController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    Future.delayed(const Duration(milliseconds: 0), () {
+    Future.delayed(const Duration(milliseconds: 100), () {
       if (box.read('lang') == 'العربية') {
         LocalizationService().changeLocale('العربية');
       } else if (box.read('lang') == 'English') {
         LocalizationService().changeLocale('English');
-      }
+      } else {}
       if (box.read('theme') == 'dark') {
-        // print('get ${box.read('theme')}');
+        print('get ${box.read('theme')}');
         Get.changeThemeMode(ThemeMode.dark);
         Get.changeTheme(ColorController.dark);
         box.write('theme', 'dark');
@@ -25,8 +26,10 @@ class ColorController extends GetxController {
         Get.changeThemeMode(ThemeMode.light);
         Get.changeTheme(ColorController.light);
         box.write('theme', 'light');
-        // print('get ${box.read('theme')}');
-      } else {}
+        print('get ${box.read('theme')}');
+      } else {
+        print('else theme');
+      }
     });
   }
 
@@ -43,6 +46,8 @@ class ColorController extends GetxController {
     primaryColor: Colorsax.blue,
     navigationBarTheme: NavigationBarThemeData(backgroundColor: Colorsax.white),
     appBarTheme: AppBarTheme(
+        systemOverlayStyle:
+            SystemUiOverlayStyle(statusBarIconBrightness: Brightness.dark),
         // actionsIconTheme: IconThemeData(color: Colorsax.black),
         backgroundColor: Colorsax.blueGrey,
         titleTextStyle: TextStyle(color: Colorsax.black)),
@@ -56,11 +61,13 @@ class ColorController extends GetxController {
     canvasColor: Colorsax.darkGrey,
     backgroundColor: Colorsax.darkGrey,
     navigationBarTheme: NavigationBarThemeData(backgroundColor: Colorsax.black),
-    iconTheme: IconThemeData(color: Colorsax.blueGrey),
+    iconTheme: IconThemeData(color: Colorsax.lightGrey),
     listTileTheme: ListTileThemeData(tileColor: Colorsax.black),
     primaryColor: Colorsax.black,
     scaffoldBackgroundColor: Colorsax.darkGrey,
     appBarTheme: AppBarTheme(
+        systemOverlayStyle:
+            SystemUiOverlayStyle(statusBarIconBrightness: Brightness.light),
         // actionsIconTheme: IconThemeData(color: Colorsax.blueGrey),
         backgroundColor: Colorsax.darkGrey,
         titleTextStyle: TextStyle(color: Colorsax.blueGrey)),
@@ -79,6 +86,10 @@ class ColorController extends GetxController {
     scaffoldBackgroundColor: Colorsax.blueGrey,
     // popupMenuTheme: PopupMenuThemeData(color: Colorsax.blueGrey),
     appBarTheme: AppBarTheme(
+        // systemOverlayStyle: SystemUiOverlayStyle(
+        //     statusBarColor: Colors.transparent,
+        //     statusBarBrightness: Brightness.light,
+        //     statusBarIconBrightness: Brightness.light),
         // actionsIconTheme: IconThemeData(color: Colorsax.black),
         backgroundColor: Colorsax.blueGrey,
         titleTextStyle: TextStyle(color: Colorsax.black)),
