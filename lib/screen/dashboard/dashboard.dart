@@ -23,15 +23,16 @@ class _DashBoardPageState extends State<DashBoardPage> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         elevation: 0,
-        title: Padding(
-          padding: const EdgeInsets.only(top: 10, right: 10),
+        leading: Container(
+          margin: EdgeInsets.symmetric(horizontal: 5.w),
           child: Image.asset(
             Get.isDarkMode
                 ? 'assets/images/logo_dark.png'
                 : 'assets/images/logo_light.png',
-            width: 18.w,
+            fit: BoxFit.fitWidth,
           ),
         ),
+        leadingWidth: 30.w,
         actions: [
           GestureDetector(
             onTap: () {
@@ -46,7 +47,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
               decoration: BoxDecoration(
                   shape: BoxShape.circle, color: Colorsax.lightBlue),
               child: Icon(
-                Icons.qr_code_scanner,
+                Icons.qr_code_scanner_rounded,
                 color: Colorsax.blue,
               ),
             ),
@@ -58,8 +59,9 @@ class _DashBoardPageState extends State<DashBoardPage> {
           Container(
             padding: EdgeInsets.symmetric(vertical: 3.5.h, horizontal: 4.w),
             width: 100.w,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            child: ListView(
+              physics: const BouncingScrollPhysics(),
+              // crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   children: [
@@ -88,6 +90,9 @@ class _DashBoardPageState extends State<DashBoardPage> {
                   height: 2.5.h,
                 ),
                 dash4(selfaCount: '300,000'),
+                SizedBox(
+                  height: 2.h,
+                ),
               ],
             ),
           ),

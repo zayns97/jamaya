@@ -31,6 +31,7 @@ class NotificationPage extends StatelessWidget {
             ),
             Expanded(
               child: ListView.builder(
+                physics: BouncingScrollPhysics(),
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
                 itemBuilder: (_context, index) {

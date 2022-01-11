@@ -20,6 +20,9 @@ class _EditPaswordPageState extends State<EditPaswordPage> {
       TextEditingController(text: '');
   late final TextEditingController _repPassTextController =
       TextEditingController(text: '');
+  final currentPassFocusNode = FocusNode();
+  final newPassFocusNode = FocusNode();
+  final repPassFocusNode = FocusNode();
 
   @override
   Widget build(BuildContext context) {
@@ -55,32 +58,38 @@ class _EditPaswordPageState extends State<EditPaswordPage> {
                           height: 10.h,
                         ),
                         txtFormField(
-                          'current_password'.tr,
-                          Iconsax.key,
-                          TextInputType.visiblePassword,
-                          TextInputAction.next,
-                          _currentPassTextController,
-                        ),
+                            'current_password'.tr,
+                            Iconsax.key,
+                            TextInputType.visiblePassword,
+                            TextInputAction.next,
+                            _currentPassTextController,
+                            'This Field is required',
+                            context,
+                            currentPassFocusNode),
                         SizedBox(
                           height: 2.h,
                         ),
                         txtFormField(
-                          'password'.tr,
-                          Iconsax.password_check,
-                          TextInputType.visiblePassword,
-                          TextInputAction.next,
-                          _passTextController,
-                        ),
+                            'password'.tr,
+                            Iconsax.password_check,
+                            TextInputType.visiblePassword,
+                            TextInputAction.next,
+                            _passTextController,
+                            'This Field is required',
+                            context,
+                            newPassFocusNode),
                         SizedBox(
                           height: 2.h,
                         ),
                         txtFormField(
-                          'rep_password'.tr,
-                          Iconsax.password_check,
-                          TextInputType.phone,
-                          TextInputAction.done,
-                          _repPassTextController,
-                        ),
+                            'rep_password'.tr,
+                            Iconsax.password_check,
+                            TextInputType.phone,
+                            TextInputAction.done,
+                            _repPassTextController,
+                            'This Field is required',
+                            context,
+                            repPassFocusNode),
                         SizedBox(
                           height: 12.h,
                         ),

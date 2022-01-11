@@ -44,6 +44,7 @@ class _MySelfaListState extends State<MySelfaList> {
                     child: RefreshIndicator(
                       onRefresh: refresh,
                       child: ListView.builder(
+                        physics: const BouncingScrollPhysics(),
                         scrollDirection: Axis.vertical,
                         shrinkWrap: true,
                         itemBuilder: (_context, index) {

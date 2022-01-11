@@ -10,9 +10,16 @@ import 'package:sizer/sizer.dart';
 Widget dash1({required int selfaCount}) {
   return Stack(
     children: [
-      SvgPicture.asset('assets/images/dashboard/dash1.svg'),
       Container(
-        height: 22.h,
+        height: 24.h,
+        width: 95.w,
+        child: SvgPicture.asset(
+          'assets/images/dashboard/dash1.svg',
+          fit: BoxFit.fill,
+        ),
+      ),
+      Container(
+        height: 24.h,
         padding: const EdgeInsets.all(20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -27,7 +34,7 @@ Widget dash1({required int selfaCount}) {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Textsax(
-                    text: '$selfaCount',
+                    text: '$selfaCount ',
                     fontSize: 20,
                     color: Colorsax.white,
                     fontWeight: FontWeight.bold),
@@ -44,9 +51,16 @@ Widget dash1({required int selfaCount}) {
 Widget dash2({required int selfaCount}) {
   return Stack(
     children: [
-      SvgPicture.asset('assets/images/dashboard/dash2.svg'),
+      SizedBox(
+        height: 23.5.h,
+        width: 43.5.w,
+        child: SvgPicture.asset(
+          'assets/images/dashboard/dash2.svg',
+          fit: BoxFit.fill,
+        ),
+      ),
       Container(
-        height: 22.h,
+        height: 23.5.h,
         width: 43.5.w,
         padding: const EdgeInsets.all(20),
         child: Column(
@@ -72,7 +86,7 @@ Widget dash2({required int selfaCount}) {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Textsax(
-                    text: '$selfaCount',
+                    text: '$selfaCount ',
                     fontSize: 16,
                     color: Colorsax.white,
                     fontWeight: FontWeight.bold),
@@ -89,9 +103,16 @@ Widget dash2({required int selfaCount}) {
 Widget dash3({required int selfaCount}) {
   return Stack(
     children: [
-      SvgPicture.asset('assets/images/dashboard/dash3.svg'),
+      SizedBox(
+        height: 23.5.h,
+        width: 43.5.w,
+        child: SvgPicture.asset(
+          'assets/images/dashboard/dash3.svg',
+          fit: BoxFit.fill,
+        ),
+      ),
       Container(
-        height: 22.h,
+        height: 23.5.h,
         width: 43.5.w,
         padding: const EdgeInsets.all(20),
         child: Column(
@@ -117,7 +138,7 @@ Widget dash3({required int selfaCount}) {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Textsax(
-                    text: '$selfaCount',
+                    text: '$selfaCount ',
                     fontSize: 16,
                     color: Colorsax.white,
                     fontWeight: FontWeight.bold),
@@ -134,9 +155,16 @@ Widget dash3({required int selfaCount}) {
 Widget dash4({required String selfaCount}) {
   return Stack(
     children: [
-      SvgPicture.asset('assets/images/dashboard/dash4.svg'),
+      SizedBox(
+        width: 95.w,
+        height: 14.h,
+        child: SvgPicture.asset(
+          'assets/images/dashboard/dash4.svg',
+          fit: BoxFit.fill,
+        ),
+      ),
       Container(
-        height: 12.2.h,
+        height: 14.h,
         width: 95.w,
         padding: const EdgeInsets.all(20),
         child: Column(

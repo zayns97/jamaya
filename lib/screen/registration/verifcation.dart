@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_verification_code/flutter_verification_code.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
@@ -8,6 +7,8 @@ import 'package:selfa/utils/colors.dart';
 import 'package:selfa/utils/text_widget.dart';
 import 'package:sizer/sizer.dart';
 import 'package:timer_button/timer_button.dart';
+
+import 'component/verification_code.dart';
 
 class PhoneVerification extends StatefulWidget {
   const PhoneVerification({Key? key, required this.autofocus})
@@ -25,22 +26,24 @@ class _PhoneVerificationState extends State<PhoneVerification> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // backgroundColor: color.main,
-        automaticallyImplyLeading: false,
         elevation: 0,
-        title: Padding(
-          padding: EdgeInsets.only(top: 1.h, right: 1.h),
+        automaticallyImplyLeading: false,
+        leading: Container(
+          margin: EdgeInsets.symmetric(horizontal: 5.w),
           child: Image.asset(
             Get.isDarkMode
                 ? 'assets/images/logo_dark.png'
                 : 'assets/images/logo_light.png',
-            width: 22.w,
+            fit: BoxFit.fitWidth,
           ),
         ),
+        leadingWidth: 30.w,
       ),
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 7.w),
         child: ListView(
+          physics: const BouncingScrollPhysics(),
+
           padding: EdgeInsets.zero,
           children: [
             Padding(
@@ -62,7 +65,8 @@ class _PhoneVerificationState extends State<PhoneVerification> {
             SizedBox(
               height: 13.h,
             ),
-            Textsax(text: 'verif_hint'.tr, fontSize: 13.5),
+            Textsax(
+                text: 'verif_hint'.tr, fontSize: 13.5, color: Colorsax.grey),
             SizedBox(
               height: 10.h,
             ),
@@ -73,7 +77,7 @@ class _PhoneVerificationState extends State<PhoneVerification> {
                   itemSize: 60,
                   textStyle: TextStyle(fontSize: 22.sp, color: Colorsax.blue),
                   keyboardType: TextInputType.number,
-                  fillColor: context.theme.cardColor,
+                  fillColor: context.theme.listTileTheme.tileColor,
                   underlineColor: Colorsax.blue,
                   underlineWidth: 2,
                   autofocus: widget.autofocus,

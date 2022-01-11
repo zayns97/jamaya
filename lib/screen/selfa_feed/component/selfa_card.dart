@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:selfa/screen/selfa_details/model/user_model.dart';
 import 'package:selfa/screen/selfa_details/selfa_details.dart';
 import 'package:selfa/screen/selfa_feed/model/self_model.dart';
 import 'package:selfa/utils/colors.dart';
@@ -19,6 +21,7 @@ class SelfaCard extends StatefulWidget {
 
 class _SelfaCardState extends State<SelfaCard> {
   final box = GetStorage();
+  int x = 0;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -59,14 +62,11 @@ class _SelfaCardState extends State<SelfaCard> {
                         Textsax(text: 'iqd'.tr, fontSize: 16),
                       ],
                     ),
-                    Row(
-                      children: [
-                        Textsax(text: 'subs_count'.tr, fontSize: 11),
-                        Textsax(
-                            text: '${widget.selfa.selfa_subscribers_count}',
-                            fontSize: 11),
-                      ],
-                    )
+                    Textsax(
+                        text: widget.selfa.privacy.tr,
+                        fontSize: 11,
+                        fontWeight: FontWeight.bold,
+                        color: Colorsax.blue)
                   ],
                 ),
                 SizedBox(
@@ -93,7 +93,7 @@ class _SelfaCardState extends State<SelfaCard> {
                   child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 5.w),
                     decoration: BoxDecoration(
-                        color: Colorsax.lightGreen,
+                        color: Colorsax.lightBlue,
                         borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(15),
                             bottomRight: Radius.circular(15))),
@@ -158,6 +158,67 @@ class _SelfaCardState extends State<SelfaCard> {
                         ),
                       ],
                     ),
+                  )),
+          box.read('lang') == 'English'
+              ? Positioned(
+                  bottom: 2.2.h,
+                  left: 3.w,
+                  child: Row(
+                    children: users.map((i) {
+                      x++;
+                      return x < 5
+                          ? Container(
+                              margin: EdgeInsets.symmetric(horizontal: 0.75.w),
+                              width: 5.w,
+                              height: 5.w,
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colorsax.lightBlue),
+                              child: Center(
+                                  child: Icon(
+                                Iconsax.user,
+                                color: Colorsax.blue,
+                                size: 4.w,
+                              )),
+                            )
+                          : Container(
+                              child: Textsax(
+                                  text: '+${x - 4}',
+                                  fontSize: 13,
+                                  height: 2,
+                                  fontWeight: FontWeight.bold),
+                            );
+                    }).toList(),
+                  ))
+              : Positioned(
+                  bottom: 2.2.h,
+                  right: 3.w,
+                  child: Row(
+                    children: users.map((i) {
+                      x++;
+                      return x < 5
+                          ? Container(
+                              margin: EdgeInsets.symmetric(horizontal: 0.75.w),
+                              width: 5.w,
+                              height: 5.w,
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colorsax.lightBlue),
+                              child: Center(
+                                  child: Icon(
+                                Iconsax.user,
+                                color: Colorsax.blue,
+                                size: 4.w,
+                              )),
+                            )
+                          : Container(
+                              child: Textsax(
+                                  text: '+${x - 4}',
+                                  fontSize: 13,
+                                  height: 2,
+                                  fontWeight: FontWeight.bold),
+                            );
+                    }).toList(),
                   ))
         ],
       ),

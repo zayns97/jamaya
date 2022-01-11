@@ -7,19 +7,13 @@ import 'package:sizer/sizer.dart';
 
 void showFilterDialog() {
   Get.bottomSheet(
-    Container(
-      height: 36.h,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(25),
-        color: Get.theme.scaffoldBackgroundColor,
-      ),
-      // padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 3.w),
-      child: ListView(
-        physics: const NeverScrollableScrollPhysics(),
+      Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           Container(
             padding: EdgeInsets.symmetric(vertical: 2.h),
             decoration: BoxDecoration(
+                // color: Get.theme.listTileTheme.tileColor,
                 color: Get.theme.scaffoldBackgroundColor,
                 borderRadius: BorderRadius.only(
                     topRight: Radius.circular(25),
@@ -36,7 +30,7 @@ void showFilterDialog() {
           ),
           Container(
             padding: EdgeInsets.symmetric(vertical: 1.5.h, horizontal: 4.w),
-            color: Get.theme.listTileTheme.tileColor,
+            color: Get.theme.scaffoldBackgroundColor,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -50,7 +44,7 @@ void showFilterDialog() {
           Container(
             padding: EdgeInsets.symmetric(vertical: 1.5.h),
             decoration: BoxDecoration(
-              color: Get.theme.listTileTheme.tileColor,
+              color: Get.theme.scaffoldBackgroundColor,
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -75,10 +69,11 @@ void showFilterDialog() {
                               height: 1,
                               fontSize: 10.sp,
                             ),
+                            cursorHeight: 17,
                             decoration: InputDecoration(
                               filled: true,
                               counterText: '',
-                              fillColor: Get.theme.scaffoldBackgroundColor,
+                              fillColor: Get.theme.listTileTheme.tileColor,
                               enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
                                 borderSide:
@@ -120,10 +115,11 @@ void showFilterDialog() {
                               height: 1,
                               fontSize: 10.sp,
                             ),
+                            cursorHeight: 17,
                             decoration: InputDecoration(
                               filled: true,
                               counterText: '',
-                              fillColor: Get.theme.scaffoldBackgroundColor,
+                              fillColor: Get.theme.listTileTheme.tileColor,
                               enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
                                 borderSide:
@@ -149,7 +145,7 @@ void showFilterDialog() {
           ),
           Container(
             padding: EdgeInsets.symmetric(vertical: 1.5.h, horizontal: 4.w),
-            color: Get.theme.listTileTheme.tileColor,
+            color: Get.theme.scaffoldBackgroundColor,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -163,7 +159,7 @@ void showFilterDialog() {
           Container(
             padding: EdgeInsets.symmetric(vertical: 1.5.h),
             decoration: BoxDecoration(
-              color: Get.theme.listTileTheme.tileColor,
+              color: Get.theme.scaffoldBackgroundColor,
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -188,10 +184,11 @@ void showFilterDialog() {
                               height: 1,
                               fontSize: 10.sp,
                             ),
+                            cursorHeight: 17,
                             decoration: InputDecoration(
                               filled: true,
                               counterText: '',
-                              fillColor: Get.theme.scaffoldBackgroundColor,
+                              fillColor: Get.theme.listTileTheme.tileColor,
                               enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
                                 borderSide:
@@ -233,10 +230,11 @@ void showFilterDialog() {
                               height: 1,
                               fontSize: 10.sp,
                             ),
+                            cursorHeight: 17,
                             decoration: InputDecoration(
                               filled: true,
                               counterText: '',
-                              fillColor: Get.theme.scaffoldBackgroundColor,
+                              fillColor: Get.theme.listTileTheme.tileColor,
                               enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
                                 borderSide:
@@ -285,10 +283,9 @@ void showFilterDialog() {
           ),
         ],
       ),
-    ),
-    isDismissible: true,
-    enableDrag: true,
-  );
+      isDismissible: true,
+      enableDrag: true,
+      ignoreSafeArea: false);
 }
 
 void showSortDialog() {
@@ -306,7 +303,7 @@ void showSortDialog() {
           Container(
             padding: EdgeInsets.symmetric(vertical: 2.h),
             decoration: BoxDecoration(
-                color: Colorsax.blue,
+                color: Get.theme.scaffoldBackgroundColor,
                 borderRadius: BorderRadius.only(
                     topRight: Radius.circular(25),
                     topLeft: Radius.circular(25))),
@@ -316,8 +313,7 @@ void showSortDialog() {
                 Textsax(
                     text: 'sortby'.tr,
                     fontSize: 13,
-                    fontWeight: FontWeight.bold,
-                    color: Colorsax.white)
+                    fontWeight: FontWeight.bold)
               ],
             ),
           ),

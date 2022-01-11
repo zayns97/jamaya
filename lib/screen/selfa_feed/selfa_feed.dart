@@ -108,6 +108,7 @@ class _SelfaFeedPageState extends State<SelfaFeedPage> {
         child: RefreshIndicator(
           onRefresh: refresh,
           child: ListView.builder(
+            physics: const BouncingScrollPhysics(),
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
             itemBuilder: (_context, index) {
@@ -121,49 +122,6 @@ class _SelfaFeedPageState extends State<SelfaFeedPage> {
       ),
     );
   }
-
-  // void showSortDialog() {
-  //   Get.bottomSheet(
-  //     Container(
-  //       decoration: BoxDecoration(
-  //           color: context.theme.listTileTheme.tileColor,
-  //           borderRadius: BorderRadius.only(
-  //               topRight: Radius.circular(25), topLeft: Radius.circular(25))),
-  //       padding: EdgeInsets.symmetric(vertical: 3.h, horizontal: 3.w),
-  //       child: Column(
-  //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //         crossAxisAlignment: CrossAxisAlignment.center,
-  //         mainAxisSize: MainAxisSize.min,
-  //         children: [
-  //           Container()
-  //           Textsax(text: 'loanAmount'.tr, fontSize: 13),
-  //           Divider(
-  //             thickness: 1,
-  //             height: 2.h,
-  //           ),
-  //           Textsax(text: 'shareAmount'.tr, fontSize: 13),
-  //           Divider(
-  //             thickness: 2,
-  //             height: 2.h,
-  //           ),
-  //           Textsax(text: 'sortby'.tr, fontSize: 13),
-  //           Divider(
-  //             thickness: 2,
-  //             height: 2.h,
-  //           ),
-  //           Textsax(text: 'ascending'.tr, fontSize: 13),
-  //           Divider(
-  //             thickness: 1,
-  //             height: 2.h,
-  //           ),
-  //           Textsax(text: 'descending'.tr, fontSize: 13),
-  //         ],
-  //       ),
-  //     ),
-  //     isDismissible: true,
-  //     enableDrag: true,
-  //   );
-  // }
 
   Future<void> refresh() {
     return Future.delayed(const Duration(seconds: 2));

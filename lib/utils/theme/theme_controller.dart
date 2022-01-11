@@ -11,7 +11,7 @@ class ColorController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    Future.delayed(const Duration(milliseconds: 100), () {
+    Future.delayed(const Duration(milliseconds: 50), () {
       if (box.read('lang') == 'العربية') {
         LocalizationService().changeLocale('العربية');
       } else if (box.read('lang') == 'English') {
@@ -22,13 +22,11 @@ class ColorController extends GetxController {
         Get.changeThemeMode(ThemeMode.dark);
         Get.changeTheme(ColorController.dark);
         box.write('theme', 'dark');
-      } else if (box.read('theme') == 'light') {
+      } else {
         Get.changeThemeMode(ThemeMode.light);
         Get.changeTheme(ColorController.light);
         box.write('theme', 'light');
         print('get ${box.read('theme')}');
-      } else {
-        print('else theme');
       }
     });
   }
@@ -36,18 +34,27 @@ class ColorController extends GetxController {
   // LIGHT
   // THEME
   static final light = ThemeData.light().copyWith(
+    textSelectionTheme: TextSelectionThemeData(
+      cursorColor: Colorsax.blue,
+      selectionColor: Colorsax.lightBlue,
+      selectionHandleColor: Colorsax.blue,
+    ),
     splashColor: Colors.transparent,
     highlightColor: Colors.transparent,
+    dividerColor: Colorsax.darkGrey,
     canvasColor: Colorsax.blue,
     backgroundColor: Colorsax.blueGrey,
     scaffoldBackgroundColor: Colorsax.blueGrey,
     iconTheme: IconThemeData(color: Colorsax.darkGrey),
     listTileTheme: ListTileThemeData(tileColor: Colorsax.white),
     primaryColor: Colorsax.blue,
+    progressIndicatorTheme:
+        ProgressIndicatorThemeData(refreshBackgroundColor: Colorsax.white),
     navigationBarTheme: NavigationBarThemeData(backgroundColor: Colorsax.white),
     appBarTheme: AppBarTheme(
-        systemOverlayStyle:
-            SystemUiOverlayStyle(statusBarIconBrightness: Brightness.dark),
+        systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarIconBrightness: Brightness.dark,
+        ),
         // actionsIconTheme: IconThemeData(color: Colorsax.black),
         backgroundColor: Colorsax.blueGrey,
         titleTextStyle: TextStyle(color: Colorsax.black)),
@@ -56,14 +63,22 @@ class ColorController extends GetxController {
   // DARK
   // THEME
   static final dark = ThemeData.dark().copyWith(
+    textSelectionTheme: TextSelectionThemeData(
+      cursorColor: Colorsax.blue,
+      selectionColor: Colorsax.lightBlue,
+      selectionHandleColor: Colorsax.blue,
+    ),
     splashColor: Colors.transparent,
     highlightColor: Colors.transparent,
+    dividerColor: Colorsax.white,
     canvasColor: Colorsax.darkGrey,
     backgroundColor: Colorsax.darkGrey,
     navigationBarTheme: NavigationBarThemeData(backgroundColor: Colorsax.black),
     iconTheme: IconThemeData(color: Colorsax.lightGrey),
     listTileTheme: ListTileThemeData(tileColor: Colorsax.black),
     primaryColor: Colorsax.black,
+    progressIndicatorTheme:
+        ProgressIndicatorThemeData(refreshBackgroundColor: Colorsax.darkGrey),
     scaffoldBackgroundColor: Colorsax.darkGrey,
     appBarTheme: AppBarTheme(
         systemOverlayStyle:

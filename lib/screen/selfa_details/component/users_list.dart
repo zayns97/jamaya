@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:selfa/screen/selfa_details/model/user_model.dart';
@@ -18,22 +19,30 @@ class _UserListCardState extends State<UserListCard> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Textsax(
                 text: '${widget.index + 1}-',
                 fontSize: 16,
+                color: Colorsax.blue,
                 fontWeight: FontWeight.bold),
             SizedBox(
-              width: 2.3.w,
+              width: 2.4.w,
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Textsax(text: widget.user.user_name, fontSize: 15),
+                SizedBox(
+                  height: 1.5.h,
+                ),
+                Textsax(
+                    text: widget.user.user_name,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w700),
                 SizedBox(height: 1.h),
                 Row(
                   children: [
@@ -49,6 +58,7 @@ class _UserListCardState extends State<UserListCard> {
             ),
             Expanded(child: Container()),
             Row(
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 widget.user.is_reserved
                     ? Container(
@@ -59,28 +69,35 @@ class _UserListCardState extends State<UserListCard> {
                         child: Textsax(
                             text: 'reserve'.tr,
                             fontSize: 11,
+                            fontWeight: FontWeight.bold,
                             color: Colorsax.green),
+                      )
+                    : Container(),
+                widget.user.is_for_sell
+                    ? SizedBox(
+                        width: 1.5.w,
                       )
                     : Container(),
                 widget.user.is_for_sell
                     ? Container(
                         padding: const EdgeInsets.all(8),
-                        margin: EdgeInsets.symmetric(horizontal: 1.5.w),
+                        // margin: EdgeInsets.symmetric(horizontal: 1.5.w),
                         decoration: BoxDecoration(
-                            color: Colorsax.insta1,
+                            color: Colorsax.lightGrey,
                             borderRadius: BorderRadius.circular(10)),
                         child: Textsax(
                             text: 'forsell'.tr,
+                            fontWeight: FontWeight.bold,
                             fontSize: 11,
-                            color: Colorsax.white),
+                            color: Colorsax.darkGrey),
                       )
                     : Container(),
               ],
             )
           ],
         ),
-        const Divider(
-          thickness: 1,
+        SizedBox(
+          height: 1.h,
         )
       ],
     );

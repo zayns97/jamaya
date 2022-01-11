@@ -2,6 +2,7 @@ import 'package:curved_nav_bar/curved_bar/curved_action_bar.dart';
 import 'package:curved_nav_bar/fab_bar/fab_bottom_app_bar_item.dart';
 import 'package:curved_nav_bar/flutter_curved_bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_utils/src/extensions/context_extensions.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:sizer/sizer.dart';
@@ -35,7 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 shape: BoxShape.circle,
                 border: Border.all(
                   width: 1,
-                  color: Colorsax.lightGrey, // red as border color
+                  color: Get.theme.dividerColor,
                 )),
             child: Icon(
               Iconsax.add,

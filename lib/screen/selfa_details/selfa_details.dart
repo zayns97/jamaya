@@ -1,22 +1,35 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:pretty_qr_code/pretty_qr_code.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:screenshot/screenshot.dart';
+import 'package:selfa/screen/edit_selfa/edit_selfa.dart';
 import 'package:selfa/screen/selfa_details/model/user_model.dart';
 import 'package:selfa/screen/selfa_feed/model/self_model.dart';
 import 'package:selfa/utils/colors.dart';
 import 'package:selfa/utils/text_widget.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../home_structure.dart';
 import 'component/users_list.dart';
 
-class SelfaDetails extends StatelessWidget {
+class SelfaDetails extends StatefulWidget {
   const SelfaDetails({Key? key, required this.selfa}) : super(key: key);
   final Selfa selfa;
+
+  @override
+  State<SelfaDetails> createState() => _SelfaDetailsState();
+}
+
+class _SelfaDetailsState extends State<SelfaDetails> {
+  ScreenshotController screenshotController = ScreenshotController();
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +39,7 @@ class SelfaDetails extends StatelessWidget {
         backgroundColor: Colors.transparent,
         toolbarHeight: 0,
         elevation: 0,
-        systemOverlayStyle: SystemUiOverlayStyle(
+        systemOverlayStyle: const SystemUiOverlayStyle(
           statusBarIconBrightness: Brightness.light,
         ),
       ),
@@ -67,7 +80,11 @@ class SelfaDetails extends StatelessWidget {
                         Row(
                           children: [
                             GestureDetector(
-                              onTap: () {},
+                              onTap: () {
+                                Get.to(EditSelfa(
+                                  selfa: widget.selfa,
+                                ));
+                              },
                               child: Container(
                                 width: 10.w,
                                 height: 10.w,
@@ -81,7 +98,7 @@ class SelfaDetails extends StatelessWidget {
                               width: 2.w,
                             ),
                             GestureDetector(
-                              onTap: () {},
+                              onTap: _captureAndSharePng,
                               child: Container(
                                 width: 10.w,
                                 height: 10.w,
@@ -97,21 +114,25 @@ class SelfaDetails extends StatelessWidget {
                     ),
                   ),
                   Center(
-                    child: Container(
-                      width: 35.w,
-                      height: 35.w,
-                      padding: EdgeInsets.symmetric(vertical: 0.7.h),
-                      decoration: BoxDecoration(
-                          color: Colorsax.blueGrey,
-                          borderRadius: BorderRadius.circular(15)),
-                      child: Center(
-                        child: PrettyQr(
-                          elementColor: Colorsax.darkGrey,
-                          image: const AssetImage('assets/images/icon_50.png'),
-                          data: selfa.selfa_qr_code,
-                          size: 30.w,
-                          errorCorrectLevel: QrErrorCorrectLevel.M,
-                          roundEdges: true,
+                    child: Screenshot(
+                      controller: screenshotController,
+                      child: Container(
+                        width: 35.w,
+                        height: 35.w,
+                        padding: EdgeInsets.symmetric(vertical: 0.7.h),
+                        decoration: BoxDecoration(
+                            color: Colorsax.blueGrey,
+                            borderRadius: BorderRadius.circular(15)),
+                        child: Center(
+                          child: PrettyQr(
+                            elementColor: Colorsax.darkGrey,
+                            image:
+                                const AssetImage('assets/images/icon_50.png'),
+                            data: widget.selfa.selfa_qr_code,
+                            size: 30.w,
+                            errorCorrectLevel: QrErrorCorrectLevel.M,
+                            roundEdges: true,
+                          ),
                         ),
                       ),
                     ),
@@ -126,11 +147,12 @@ class SelfaDetails extends StatelessWidget {
             width: 90.w,
             height: 70.h,
             child: ListView(
+              physics: const BouncingScrollPhysics(),
               children: [
                 Container(
                   padding: EdgeInsets.symmetric(vertical: 2.h, horizontal: 2.w),
                   width: 90.w,
-                  height: 15.h,
+                  height: 16.h,
                   decoration: BoxDecoration(
                       color: Get.theme.listTileTheme.tileColor,
                       borderRadius: BorderRadius.circular(15)),
@@ -144,7 +166,7 @@ class SelfaDetails extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Textsax(
-                                  text: selfa.selfa_amount,
+                                  text: widget.selfa.selfa_amount,
                                   fontSize: 22,
                                   fontWeight: FontWeight.bold),
                               Textsax(
@@ -154,36 +176,32 @@ class SelfaDetails extends StatelessWidget {
                             ],
                           ),
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              selfa.is_private
-                                  ? Container(
-                                      padding: const EdgeInsets.all(5),
-                                      decoration: BoxDecoration(
-                                          color: Colorsax.lightGreen,
-                                          borderRadius:
-                                              BorderRadius.circular(15)),
-                                      child: Textsax(
-                                          text: 'private'.tr,
-                                          fontSize: 11,
-                                          color: Colorsax.green),
-                                    )
-                                  : Container(),
+                              Container(
+                                padding: EdgeInsets.all(1.9.w),
+                                decoration: BoxDecoration(
+                                    color: Colorsax.lightGreen,
+                                    borderRadius: BorderRadius.circular(10)),
+                                child: Textsax(
+                                    text: widget.selfa.privacy.tr,
+                                    fontSize: 11,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colorsax.green),
+                              ),
                               SizedBox(
                                 width: 1.5.w,
                               ),
                               Container(
-                                padding: const EdgeInsets.all(5),
+                                padding: EdgeInsets.all(1.9.w),
                                 decoration: BoxDecoration(
-                                    color: selfa.selfa_status == 'غير مكتملة'
-                                        ? Colorsax.lightBlue
-                                        : Colorsax.lightGreen,
-                                    borderRadius: BorderRadius.circular(15)),
+                                    color: Colorsax.lightBlue,
+                                    borderRadius: BorderRadius.circular(10)),
                                 child: Textsax(
-                                  text: selfa.selfa_status,
+                                  text: widget.selfa.selfa_status.tr,
+                                  fontWeight: FontWeight.bold,
                                   fontSize: 11,
-                                  color: selfa.selfa_status == 'غير مكتملة'
-                                      ? Colorsax.blue
-                                      : Colorsax.green,
+                                  color: Colorsax.blue,
                                 ),
                               ),
                             ],
@@ -203,22 +221,25 @@ class SelfaDetails extends StatelessWidget {
                         children: [
                           Container(
                               decoration: BoxDecoration(
-                                  color: Colorsax.lightBlue,
-                                  borderRadius: BorderRadius.circular(15)),
-                              padding: const EdgeInsets.all(5),
+                                  color: Colorsax.lightGrey,
+                                  borderRadius: BorderRadius.circular(10)),
+                              padding: EdgeInsets.all(1.9.w),
                               child: Row(
                                 children: [
                                   Textsax(
                                       text: 'share_amount'.tr,
-                                      fontSize: 10.5,
+                                      fontSize: 11,
+                                      fontWeight: FontWeight.bold,
                                       color: Colorsax.black),
                                   Textsax(
-                                      text: ': ${selfa.share_amount}',
+                                      text: ': ${widget.selfa.share_amount}',
                                       color: Colorsax.black,
-                                      fontSize: 10.5),
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 11),
                                   Textsax(
                                       text: 'iqd'.tr,
-                                      fontSize: 10.5,
+                                      fontSize: 11,
+                                      fontWeight: FontWeight.bold,
                                       color: Colorsax.blue),
                                 ],
                               ))
@@ -238,7 +259,7 @@ class SelfaDetails extends StatelessWidget {
                     borderRadius: BorderRadius.circular(15),
                   ),
                   child: Textsax(
-                      text: selfa.selfa_description,
+                      text: widget.selfa.selfa_description,
                       fontSize: 10.5,
                       height: 2,
                       textDirection: TextDirection.rtl,
@@ -307,6 +328,17 @@ class SelfaDetails extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  void _captureAndSharePng() async {
+    final uint8List = await screenshotController.capture();
+    String tempPath = (await getTemporaryDirectory()).path;
+    File file = File('$tempPath/image.png');
+    await file.writeAsBytes(uint8List!);
+    await Share.shareFiles(
+      [file.path],
+      text: 'share_qr_text'.tr,
     );
   }
 }

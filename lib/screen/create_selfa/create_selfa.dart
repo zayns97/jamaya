@@ -24,6 +24,7 @@ class _CreateSelfaState extends State<CreateSelfa> {
       TextEditingController(text: '');
   late final TextEditingController _selfaDetailsTextController =
       TextEditingController(text: '');
+  final loanAmountFocusNode = FocusNode();
 
   final CheckController checkController = Get.put(CheckController());
   @override
@@ -35,7 +36,7 @@ class _CreateSelfaState extends State<CreateSelfa> {
         automaticallyImplyLeading: false,
         elevation: 0,
         title: Padding(
-          padding: const EdgeInsets.only(top: 10, right: 10),
+          padding: const EdgeInsets.only(top: 10, right: 10, left: 10),
           child: Textsax(
               text: 'create_loan'.tr,
               fontSize: 20,
@@ -46,10 +47,18 @@ class _CreateSelfaState extends State<CreateSelfa> {
         padding: const EdgeInsets.all(20),
         width: size.width,
         child: ListView(
+          physics: BouncingScrollPhysics(),
           padding: EdgeInsets.zero,
           children: [
-            txtFormField('loan_amount'.tr, Iconsax.moneys, TextInputType.number,
-                TextInputAction.next, _selfaAmountTextController),
+            txtFormField(
+                'loan_amount'.tr,
+                Iconsax.moneys,
+                TextInputType.number,
+                TextInputAction.done,
+                _selfaAmountTextController,
+                'Please enter a valid number',
+                context,
+                loanAmountFocusNode),
             SizedBox(
               height: 3.h,
             ),
@@ -96,7 +105,7 @@ class _CreateSelfaState extends State<CreateSelfa> {
                 Textsax(
                     text: 'create_loan'.tr,
                     fontSize: 14,
-                    color: context.theme.listTileTheme.textColor,
+                    color: Colorsax.white,
                     fontWeight: FontWeight.bold)
               ]),
             ),

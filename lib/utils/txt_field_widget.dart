@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:selfa/screen/registration/component/login_functions.dart';
 import 'package:sizer/sizer.dart';
 
 import 'colors.dart';
@@ -10,8 +11,21 @@ Widget txtFormField(
     IconData prefixIcon,
     TextInputType textInputType,
     TextInputAction textInputAction,
-    TextEditingController controller) {
-  return TextField(
+    TextEditingController controller,
+    String validation,
+    BuildContext context,
+    FocusNode focusNode,
+    {bool onEditingComplete = false}) {
+  return TextFormField(
+    validator: (value) {
+      if (value!.isEmpty) {
+        return validation;
+      }
+    },
+    onEditingComplete: () {
+      onEditingComplete ? submitFormOnLogin(context) : () {};
+    },
+    focusNode: focusNode,
     controller: controller,
     textInputAction: textInputAction,
     keyboardType: textInputType,
@@ -29,11 +43,16 @@ Widget txtFormField(
       ),
       filled: true,
       fillColor: Get.theme.listTileTheme.tileColor,
-      enabledBorder: OutlineInputBorder(
+      focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(15),
         borderSide: const BorderSide(color: Colors.transparent),
       ),
-      focusedBorder: OutlineInputBorder(
+      focusedErrorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(15),
+        borderSide: const BorderSide(color: Colors.redAccent),
+      ),
+      errorMaxLines: 1,
+      enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(15),
         borderSide: const BorderSide(color: Colors.transparent),
       ),

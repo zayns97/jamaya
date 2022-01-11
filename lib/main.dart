@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
           darkTheme: ColorController.dark,
           themeMode: ThemeMode.system,
           initialBinding: Bind(),
-          home: SetupWizard());
+          home: const SetupWizard());
     });
   }
 }

@@ -23,6 +23,9 @@ class _EditAccountInfoPageState extends State<EditAccountInfoPage> {
       TextEditingController(text: '');
   late final TextEditingController _phoneTextController =
       TextEditingController(text: '');
+  FocusNode fullnameFocusNode = FocusNode();
+  FocusNode phoneFocusNode = FocusNode();
+
   File? imageFile;
   @override
   Widget build(BuildContext context) {
@@ -53,6 +56,7 @@ class _EditAccountInfoPageState extends State<EditAccountInfoPage> {
                     width: 100.w,
                     height: 89.h,
                     child: ListView(
+                      physics: BouncingScrollPhysics(),
                       children: [
                         Center(
                           child: GestureDetector(
@@ -86,22 +90,26 @@ class _EditAccountInfoPageState extends State<EditAccountInfoPage> {
                           height: 10.h,
                         ),
                         txtFormField(
-                          'fullname'.tr,
-                          Iconsax.frame_1,
-                          TextInputType.name,
-                          TextInputAction.next,
-                          _nameTextController,
-                        ),
+                            'fullname'.tr,
+                            Iconsax.frame_1,
+                            TextInputType.name,
+                            TextInputAction.next,
+                            _nameTextController,
+                            'This Field is required',
+                            context,
+                            fullnameFocusNode),
                         SizedBox(
                           height: 2.h,
                         ),
                         txtFormField(
-                          'phone_num'.tr,
-                          Iconsax.call,
-                          TextInputType.phone,
-                          TextInputAction.next,
-                          _phoneTextController,
-                        ),
+                            'phone_num'.tr,
+                            Iconsax.call,
+                            TextInputType.phone,
+                            TextInputAction.done,
+                            _phoneTextController,
+                            'This Field is required',
+                            context,
+                            phoneFocusNode),
                         SizedBox(
                           height: 12.h,
                         ),

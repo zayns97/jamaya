@@ -3,15 +3,16 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:selfa/screen/registration/login.dart';
 import 'package:selfa/utils/colors.dart';
 import 'package:selfa/utils/text_widget.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../utils/tiles.dart';
+import 'component/dialog_sheet.dart';
 import 'component/edit_account/edit_account.dart';
-import 'component/language_theme/language_selector.dart';
+import 'component/language_theme/language_theme_selector.dart';
 import 'component/my_selfa/my_selfa.dart';
+import 'component/report_issue/report_issue.dart';
 
 class ProfileTilesPage extends StatefulWidget {
   const ProfileTilesPage({Key? key}) : super(key: key);
@@ -48,7 +49,7 @@ class _ProfileTilesPageState extends State<ProfileTilesPage> {
               child: Container(
                 margin: const EdgeInsets.symmetric(horizontal: 15),
                 child: ListView(
-                  scrollDirection: Axis.vertical,
+                  physics: const BouncingScrollPhysics(),
                   children: [
                     Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10),
@@ -99,7 +100,7 @@ class _ProfileTilesPageState extends State<ProfileTilesPage> {
                         title: 'report_an_issue'.tr,
                         leading: Iconsax.warning_2,
                         context: context,
-                        navigateTo: const LoginPage()),
+                        navigateTo: const ReportIssue()),
                     SizedBox(
                       height: size.height * 0.02,
                     ),
@@ -109,23 +110,28 @@ class _ProfileTilesPageState extends State<ProfileTilesPage> {
                         Container(
                           width: 45.w,
                           height: 65,
+                          padding: EdgeInsets.symmetric(horizontal: 2.w),
                           decoration: BoxDecoration(
                               color: Colorsax.fblue,
                               borderRadius: BorderRadius.circular(15)),
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               SvgPicture.asset('assets/face.svg'),
-                              Textsax(
-                                  text: 'Jamaya - جمعية',
-                                  fontSize: 12,
-                                  color: Colorsax.white)
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 2.w),
+                                child: Textsax(
+                                    text: 'Jamaya - جمعية',
+                                    fontSize: 12,
+                                    color: Colorsax.white),
+                              )
                             ],
                           ),
                         ),
                         Container(
                           width: 45.w,
                           height: 65,
+                          padding: EdgeInsets.symmetric(horizontal: 2.w),
                           decoration: BoxDecoration(
                               gradient: LinearGradient(
                                 stops: const [-20, 20],
@@ -135,14 +141,17 @@ class _ProfileTilesPageState extends State<ProfileTilesPage> {
                               ),
                               borderRadius: BorderRadius.circular(15)),
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               SvgPicture.asset('assets/insta.svg'),
-                              Textsax(
-                                  text: '@jamaya_iq',
-                                  fontSize: 12,
-                                  textDirection: TextDirection.ltr,
-                                  color: Colorsax.white),
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 2.w),
+                                child: Textsax(
+                                    text: '@jamaya_iq',
+                                    fontSize: 12,
+                                    textDirection: TextDirection.ltr,
+                                    color: Colorsax.white),
+                              ),
                             ],
                           ),
                         ),
@@ -152,6 +161,7 @@ class _ProfileTilesPageState extends State<ProfileTilesPage> {
                       height: 2.h,
                     ),
                     ListTile(
+                      onTap: showLogoutDialog,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15),
                       ),
